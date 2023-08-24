@@ -16,3 +16,8 @@ html {
 body {
 	margin: 0;
 }
+
+button,
+input {
+	font-family: inherit;
+}

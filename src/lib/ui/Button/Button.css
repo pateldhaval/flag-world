@@ -1,0 +1,24 @@
+.btn-root {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	font-weight: 300;
+	cursor: pointer;
+	border: 1px solid transparent;
+
+	padding: 0.6rem 1rem;
+
+	background-color: var(--background);
+	color: var(--foreground);
+
+	&.btn-elevated {
+		box-shadow: 0 0px 3px 1px var(--shadow);
+
+		&:hover {
+			box-shadow: 0 0px 10px 3px var(--shadow);
+		}
+	}
+}

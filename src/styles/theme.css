@@ -1,9 +1,13 @@
 :root {
-	--background: #242424;
-	--foreground: rgba(255, 255, 255, 0.87);
+	--background: #2b3945;
+	--foreground: #ffffff;
+
+	--shadow: #27333f;
 }
 
 [data-color-scheme='light'] {
 	--background: #ffffff;
-	--foreground: #213547;
+	--foreground: #000000;
+
+	--shadow: #e6e6e6;
 }
