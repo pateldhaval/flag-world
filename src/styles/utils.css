@@ -1,0 +1,38 @@
+.flex {
+	display: flex;
+}
+
+.inline-flex {
+	display: inline-flex;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.page {
+	padding-top: 40px;
+	padding-bottom: 44px;
+}
+
+.container {
+	padding-right: 2.5rem;
+	padding-left: 2.5rem;
+
+	@media (min-width: 768px) {
+		padding-right: 2.5rem;
+		padding-left: 2.5rem;
+	}
+	@media (min-width: 1024px) {
+		padding-right: 5rem;
+		padding-left: 5rem;
+	}
+}

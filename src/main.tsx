@@ -3,13 +3,14 @@ import './styles/index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { Providers } from '@/lib/context/Providers.tsx';
+
 import App from './App.tsx';
-import { ThemeProvider } from './lib/context/Theme.context.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<ThemeProvider>
+		<Providers>
 			<App />
-		</ThemeProvider>
+		</Providers>
 	</React.StrictMode>
 );

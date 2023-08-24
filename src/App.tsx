@@ -1,16 +1,7 @@
-import { useContext } from 'react';
-
-import { ThemeContext } from '@/lib/context/Theme.context';
+import { Router } from './routes';
 
 function App() {
-	const { handleColorScheme } = useContext(ThemeContext);
-
-	return (
-		<>
-			<div>Hello World!</div>
-			<button onClick={handleColorScheme}>Change color scheme</button>
-		</>
-	);
+	return <Router />;
 }
 
 export default App;
