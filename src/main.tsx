@@ -1,11 +1,10 @@
-import './styles/index.css';
+import '@/app/styles/index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import App from '@/app/App.tsx';
 import { Providers } from '@/lib/context/Providers.tsx';
-
-import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>

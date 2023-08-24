@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/blocks/PageHeader/PageHeader';
+import { PageHeader } from '@/app/components/PageHeader';
 
 export const Dashboard = () => {
 	return (

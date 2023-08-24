@@ -1,8 +1,8 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import { Layout } from '@/components/layout';
-import { Dashboard } from '@/pages/Dashboard';
-import NotFound from '@/pages/NotFound';
+import { Layout } from '@/app/layout';
+import { Dashboard } from '@/app/pages/Dashboard';
+import NotFound from '@/app/pages/NotFound';
 
 export const Router = () => {
 	return useRoutes([
