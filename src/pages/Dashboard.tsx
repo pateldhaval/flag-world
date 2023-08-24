@@ -1,12 +1,13 @@
-import { Button } from '@/lib/ui';
-import { ArrowLeft } from '@phosphor-icons/react';
+import { PageHeader } from '@/components/blocks/PageHeader/PageHeader';
 
 export const Dashboard = () => {
 	return (
 		<div className='container'>
-			<Button isElevated={true} icon={<ArrowLeft size={18} />}>
-				Sample
-			</Button>
+			<PageHeader>
+				<div>Search</div>
+				<div>Filter</div>
+			</PageHeader>
+			{/* <Button isElevated={true} icon={<ArrowLeft size={18} />}>Sample</Button> */}
 		</div>
 	);
 };
