@@ -1,6 +1,7 @@
 :root {
 	--background: #2b3945;
 	--foreground: #ffffff;
+	--foreground-control: #ffffff;
 
 	--shadow: #27333f;
 }
@@ -8,6 +9,7 @@
 [data-color-scheme='light'] {
 	--background: #ffffff;
 	--foreground: #000000;
+	--foreground-control: #858585;
 
 	--shadow: #e6e6e6;
 }

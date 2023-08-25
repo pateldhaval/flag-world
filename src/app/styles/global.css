@@ -13,12 +13,21 @@ html {
 	color: var(--foreground);
 }
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 }
 
 button,
-input {
+input,
+optgroup,
+select,
+textarea {
 	font-family: inherit;
 }
 
