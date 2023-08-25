@@ -4,20 +4,22 @@ import React from 'react';
 
 import { Typography } from '@/lib/ui/Typography';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	image: string;
 	title: string;
 	children: React.ReactNode;
 }
 
-export const Card: React.FC<IProps> = ({ image, title, children }) => {
+export const Card: React.FC<IProps> = ({ image, title, children, className, ...rest }) => {
+	const classes = ['card-root', `${className}`];
+
 	return (
-		<div className='card-root'>
+		<div className={classes.join(' ')} {...rest}>
 			<figure>
 				<img src={image} alt={title} />
 			</figure>
 			<div className='card-content'>
-				<Typography component='h4' className='card-title'>
+				<Typography component='h3' className='card-title'>
 					{title}
 				</Typography>
 				<div className='card-body'>{children}</div>

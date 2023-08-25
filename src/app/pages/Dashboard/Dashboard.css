@@ -1,0 +1,15 @@
+.flag-list {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: 2rem;
+}
+
+.flag-item {
+	grid-column: span 3 / span 3;
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+}

@@ -1,9 +1,12 @@
 .card-root {
 	box-shadow: 0 0px 3px 1px var(--shadow);
+	border-radius: 0.375rem;
+	overflow: hidden;
 
 	figure {
 		margin: 0;
 		height: 166px;
+		background-color: var(--highlight);
 
 		img {
 			display: block;

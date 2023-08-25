@@ -55,6 +55,7 @@
 		margin: 0;
 		padding: 0;
 		box-shadow: 0 0px 3px 1px var(--shadow);
+		background-color: var(--background);
 
 		overflow: auto;
 		z-index: 2;

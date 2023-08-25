@@ -5,5 +5,6 @@ export enum Variants {
 	h4 = 'h4',
 	h5 = 'h5',
 	h6 = 'h6',
-	p = 'p'
+	p = 'p',
+	span = 'span'
 }
