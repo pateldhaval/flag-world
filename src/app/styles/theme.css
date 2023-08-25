@@ -5,6 +5,7 @@
 	--highlight: #202c37;
 
 	--shadow: #27333f;
+	--card: #202c37;
 }
 
 [data-color-scheme='light'] {
@@ -14,4 +15,5 @@
 	--highlight: #fafafa;
 
 	--shadow: #e6e6e6;
+	--card: #ffffff;
 }

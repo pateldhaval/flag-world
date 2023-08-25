@@ -1,0 +1,14 @@
+.country-item {
+	cursor: pointer;
+	grid-column: span 3 / span 3;
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	&:active {
+		transform: scale(0.9);
+	}
+}

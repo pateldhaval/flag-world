@@ -1,16 +1,31 @@
 import './Dashboard.css';
 
+import { useEffect, useState } from 'react';
+
+import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
-import { Card } from '@/lib/ui/Card/Card';
+import { ICountry } from '@/app/types/country.types';
 import { Input } from '@/lib/ui/Input';
 import { Select } from '@/lib/ui/Select';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
-import { BlockDetail } from '../../components/BlockDetail/BlockDetail';
-
 export const Dashboard = () => {
-	const regions = ['Africa', 'Europe', 'Oceania', 'Americas', 'Asia', 'Antarctic'];
-	const list = Array(50).fill('');
+	const [countries, setCountries] = useState<ICountry[] | null>(null);
+
+	// [Extract unique regions from countries list]
+	const regions = [...new Set(countries?.map((item) => item.region))];
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await fetch('https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital');
+				const data = await res.json();
+				setCountries(data);
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
 
 	return (
 		<div className='container'>
@@ -24,14 +39,11 @@ export const Dashboard = () => {
 			</PageHeader>
 
 			{/* <Button isElevated={true} icon={<ArrowLeft size={18} />}>Sample</Button> */}
-			<div className='flag-list'>
-				{list.map((_, index) => (
-					<Card key={index} image='https://picsum.photos/300/166' title='India' className='flag-item'>
-						<BlockDetail title='Population' value='1380004385' />
-						<BlockDetail title='Region' value='Asia' />
-						<BlockDetail title='Capital' value='New Delhi' />
-					</Card>
-				))}
+			<div className='country-list'>
+				{countries &&
+					countries.map((country) => {
+						return <CountryCard key={country.name.official} country={country} />;
+					})}
 			</div>
 		</div>
 	);
