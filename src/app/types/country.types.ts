@@ -1,3 +1,5 @@
+export type ObjectList = { [key: string]: string };
+
 export interface IFlag {
 	png: string;
 	svg: string;
@@ -7,13 +9,22 @@ export interface IFlag {
 export interface ICountryName {
 	common: string;
 	official: string;
-	nativeName: object;
+	nativeName: { [key: string]: ObjectList };
 }
 
 export interface ICountry {
 	flags: IFlag;
 	name: ICountryName;
 	capital: string[];
-	region: string;
 	population: number;
+	region: string;
+	subregion: string;
+	tld: string[];
+	currencies: object;
+	languages: object;
+	borders: string[];
+}
+
+export interface IBorderCountry {
+	name: ObjectList;
 }

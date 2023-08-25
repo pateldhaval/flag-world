@@ -1,8 +1,9 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
 import { Layout } from '@/app/layout';
-import { Dashboard } from '@/app/pages/Dashboard/Dashboard';
-import NotFound from '@/app/pages/NotFound';
+import { Country } from '@/app/pages/Country';
+import { Dashboard } from '@/app/pages/Dashboard';
+import { NotFound } from '@/app/pages/NotFound';
 
 export const Router = () => {
 	return useRoutes([
@@ -13,6 +14,10 @@ export const Router = () => {
 				{
 					index: true,
 					element: <Dashboard />
+				},
+				{
+					path: '/country-detail',
+					element: <Country />
 				},
 				{
 					path: '/404',
