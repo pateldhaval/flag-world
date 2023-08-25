@@ -1,31 +1,19 @@
 import './Dashboard.css';
 
-import { useEffect, useState } from 'react';
-
 import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
+import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
 import { Input } from '@/lib/ui/Input';
 import { Select } from '@/lib/ui/Select';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
 export const Dashboard = () => {
-	const [countries, setCountries] = useState<ICountry[] | null>(null);
+	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
+	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 
 	// [Extract unique regions from countries list]
 	const regions = [...new Set(countries?.map((item) => item.region))];
-
-	useEffect(() => {
-		(async () => {
-			try {
-				const res = await fetch('https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital');
-				const data = await res.json();
-				setCountries(data);
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
 
 	return (
 		<div className='container'>
@@ -40,6 +28,8 @@ export const Dashboard = () => {
 
 			{/* <Button isElevated={true} icon={<ArrowLeft size={18} />}>Sample</Button> */}
 			<div className='country-list'>
+				{loading && <p>Loading...</p>}
+				{!!error && <p>Error...</p>}
 				{countries &&
 					countries.map((country) => {
 						return <CountryCard key={country.name.official} country={country} />;
