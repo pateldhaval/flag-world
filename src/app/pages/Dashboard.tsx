@@ -1,4 +1,5 @@
 import { PageHeader } from '@/app/components/PageHeader';
+import { Card } from '@/lib/ui/Card/Card';
 import { Input } from '@/lib/ui/Input';
 import { Select } from '@/lib/ui/Select';
 import { MagnifyingGlass } from '@phosphor-icons/react';
@@ -18,6 +19,11 @@ export const Dashboard = () => {
 			</PageHeader>
 
 			{/* <Button isElevated={true} icon={<ArrowLeft size={18} />}>Sample</Button> */}
+			<div className='flag-list'>
+				<Card image='https://picsum.photos/200' title='Card Title'>
+					<p>test</p>
+				</Card>
+			</div>
 		</div>
 	);
 };
