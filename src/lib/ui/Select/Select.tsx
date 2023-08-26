@@ -7,17 +7,22 @@ import { CaretDown, X } from '@phosphor-icons/react';
 interface IProps {
 	label: string;
 	list: string[];
+	onSelect?: (selected: string) => void;
+	onClear?: () => void;
 }
 
-export const Select: React.FC<IProps> = ({ label, list }) => {
+export const Select: React.FC<IProps> = ({ label, list, onSelect, onClear }) => {
 	const [selected, setSelected] = useState(label);
 
 	const handleSelect = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		setSelected((e.target as HTMLButtonElement).textContent || label);
+		const selected = (e.target as HTMLButtonElement).textContent || '';
+		setSelected(selected);
+		onSelect && onSelect(selected);
 	};
 
 	const handleClear = () => {
 		setSelected(label);
+		onClear && onClear();
 	};
 
 	return (

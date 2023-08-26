@@ -1,5 +1,7 @@
 import './Dashboard.css';
 
+import { useEffect, useState } from 'react';
+
 import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
 import { useQuery } from '@/app/hooks/useQuery';
@@ -14,8 +16,22 @@ export const Dashboard = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 
+	const [countriesList, setCountriesList] = useState(countries);
+
+	useEffect(() => {
+		setCountriesList(countries);
+	}, [countries]);
+
 	// [Extract unique regions from countries list]
 	const regions = [...new Set(countries?.map((item) => item.region))];
+
+	const handleFilterSelect = (selected: string) => {
+		countries && setCountriesList(countries.filter((item) => item.region === selected));
+	};
+
+	const handleFilterClear = () => {
+		setCountriesList(countries);
+	};
 
 	return (
 		<div className='container'>
@@ -24,7 +40,7 @@ export const Dashboard = () => {
 					<Input placeholder='Search for a country...' icon={<MagnifyingGlass size={20} />} />
 				</div>
 				<div style={{ width: '13rem', maxWidth: '24rem' }}>
-					<Select label='Filter by Region' list={regions} />
+					<Select label='Filter by Region' list={regions} onSelect={handleFilterSelect} onClear={handleFilterClear} />
 				</div>
 			</PageHeader>
 
@@ -36,8 +52,8 @@ export const Dashboard = () => {
 						{error ? (
 							<Error />
 						) : (
-							countries &&
-							countries.map((country) => {
+							countriesList &&
+							countriesList.map((country) => {
 								return <CountryCard key={country.name.official} country={country} />;
 							})
 						)}
