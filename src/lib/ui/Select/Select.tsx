@@ -1,8 +1,7 @@
 import './Select.css';
 
 import React, { useState } from 'react';
-
-import { CaretDown, X } from '@phosphor-icons/react';
+import { ChevronDown, X } from 'react-feather';
 
 interface IProps {
 	label: string;
@@ -31,9 +30,9 @@ export const Select: React.FC<IProps> = ({ label, list, onSelect, onClear }) => 
 				<span>{selected}</span>
 				<span className='action'>
 					<span className='clear' onClick={handleClear}>
-						<X />
+						<X size={17} />
 					</span>
-					<CaretDown />
+					<ChevronDown size={17} />
 				</span>
 			</button>
 			<ul>

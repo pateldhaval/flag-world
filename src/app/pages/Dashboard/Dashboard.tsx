@@ -1,6 +1,7 @@
 import './Dashboard.css';
 
 import { useEffect, useState } from 'react';
+import { Search } from 'react-feather';
 
 import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
@@ -10,7 +11,6 @@ import { Error } from '@/lib/ui/Error';
 import { Input } from '@/lib/ui/Input';
 import { Loading } from '@/lib/ui/Loading';
 import { Select } from '@/lib/ui/Select';
-import { MagnifyingGlass } from '@phosphor-icons/react';
 
 export const Dashboard = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
@@ -43,7 +43,7 @@ export const Dashboard = () => {
 				<div style={{ maxWidth: '18rem' }}>
 					<Input
 						placeholder='Search for a country...'
-						icon={<MagnifyingGlass size={20} />}
+						icon={<Search size={18} />}
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 					/>

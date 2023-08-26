@@ -1,3 +1,4 @@
+import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { CountryDetail } from '@/app/components/CountryDetail';
@@ -7,7 +8,6 @@ import { ICountry } from '@/app/types/country.types';
 import { Button } from '@/lib/ui';
 import { Error } from '@/lib/ui/Error';
 import { Loading } from '@/lib/ui/Loading';
-import { ArrowLeft } from '@phosphor-icons/react';
 
 export const Country = () => {
 	const [params] = useSearchParams();
@@ -25,7 +25,7 @@ export const Country = () => {
 	return (
 		<div className='container'>
 			<PageHeader>
-				<Button icon={<ArrowLeft size={18} />} isElevated={true} onClick={handleBack}>
+				<Button icon={<ArrowLeft size={17} />} isElevated={true} onClick={handleBack}>
 					Back
 				</Button>
 			</PageHeader>
