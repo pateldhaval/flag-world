@@ -2,6 +2,8 @@ import { useCountrySearch } from '@/app/hooks/useCountrySearch';
 import { useQuery } from '@/app/hooks/useQuery';
 import { IBorderCountry } from '@/app/types/country.types';
 import { Button } from '@/lib/ui';
+import { Error } from '@/lib/ui/Error';
+import { Loading } from '@/lib/ui/Loading';
 
 interface IProps {
 	borders: string[];
@@ -15,11 +17,11 @@ export const Borders: React.FC<IProps> = ({ borders }) => {
 	return (
 		<>
 			{loading ? (
-				<p>Loading...</p>
+				<Loading />
 			) : (
 				<>
 					{error ? (
-						<p>Error...</p>
+						<Error />
 					) : (
 						<div className='flex flex-wrap gap-1'>
 							{bordersList &&

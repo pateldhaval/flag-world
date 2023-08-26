@@ -5,6 +5,8 @@ import { PageHeader } from '@/app/components/PageHeader';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
 import { Button } from '@/lib/ui';
+import { Error } from '@/lib/ui/Error';
+import { Loading } from '@/lib/ui/Loading';
 import { ArrowLeft } from '@phosphor-icons/react';
 
 export const Country = () => {
@@ -29,9 +31,9 @@ export const Country = () => {
 			</PageHeader>
 
 			{loading ? (
-				<p>Loading...</p>
+				<Loading />
 			) : (
-				<>{error ? <p>Error...</p> : data && data.length > 0 && <CountryDetail country={data[0]} />}</>
+				<>{error ? <Error /> : data && data.length > 0 && <CountryDetail country={data[0]} />}</>
 			)}
 		</div>
 	);

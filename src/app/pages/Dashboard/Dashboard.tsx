@@ -4,7 +4,9 @@ import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
+import { Error } from '@/lib/ui/Error';
 import { Input } from '@/lib/ui/Input';
+import { Loading } from '@/lib/ui/Loading';
 import { Select } from '@/lib/ui/Select';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
@@ -26,14 +28,21 @@ export const Dashboard = () => {
 				</div>
 			</PageHeader>
 
-			{/* <Button isElevated={true} icon={<ArrowLeft size={18} />}>Sample</Button> */}
 			<div className='country-list'>
-				{loading && <p>Loading...</p>}
-				{!!error && <p>Error...</p>}
-				{countries &&
-					countries.map((country) => {
-						return <CountryCard key={country.name.official} country={country} />;
-					})}
+				{loading ? (
+					<Loading />
+				) : (
+					<>
+						{error ? (
+							<Error />
+						) : (
+							countries &&
+							countries.map((country) => {
+								return <CountryCard key={country.name.official} country={country} />;
+							})
+						)}
+					</>
+				)}
 			</div>
 		</div>
 	);
