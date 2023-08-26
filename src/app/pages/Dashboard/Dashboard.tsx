@@ -17,16 +17,20 @@ export const Dashboard = () => {
 	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 
 	const [countriesList, setCountriesList] = useState(countries);
-
-	useEffect(() => {
-		setCountriesList(countries);
-	}, [countries]);
+	const [search, setSearch] = useState('');
 
 	// [Extract unique regions from countries list]
 	const regions = [...new Set(countries?.map((item) => item.region))];
 
+	// [Updated countries list with search]
+	useEffect(() => {
+		const found = countries?.filter((item) => item.name.common.toLowerCase().includes(search.toLowerCase()));
+		setCountriesList(found || []);
+	}, [countries, search]);
+
 	const handleFilterSelect = (selected: string) => {
-		countries && setCountriesList(countries.filter((item) => item.region === selected));
+		const filtered = countries?.filter((item) => item.region === selected);
+		setCountriesList(filtered || []);
 	};
 
 	const handleFilterClear = () => {
@@ -37,7 +41,12 @@ export const Dashboard = () => {
 		<div className='container'>
 			<PageHeader>
 				<div style={{ maxWidth: '18rem' }}>
-					<Input placeholder='Search for a country...' icon={<MagnifyingGlass size={20} />} />
+					<Input
+						placeholder='Search for a country...'
+						icon={<MagnifyingGlass size={20} />}
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+					/>
 				</div>
 				<div style={{ width: '13rem', maxWidth: '24rem' }}>
 					<Select label='Filter by Region' list={regions} onSelect={handleFilterSelect} onClear={handleFilterClear} />
@@ -52,8 +61,7 @@ export const Dashboard = () => {
 						{error ? (
 							<Error />
 						) : (
-							countriesList &&
-							countriesList.map((country) => {
+							countriesList?.map((country) => {
 								return <CountryCard key={country.name.official} country={country} />;
 							})
 						)}

@@ -15,9 +15,11 @@ export const Card: React.FC<IProps> = ({ image, title, children, className, ...r
 
 	return (
 		<div className={classes.join(' ')} {...rest}>
-			<figure>
-				<img src={image} alt={title} />
-			</figure>
+			{image && (
+				<figure>
+					<img src={image} alt={title} loading='lazy' />
+				</figure>
+			)}
 			<div className='card-content'>
 				<Typography component='h3' className='card-title'>
 					{title}
