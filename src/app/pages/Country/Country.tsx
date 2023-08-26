@@ -28,9 +28,11 @@ export const Country = () => {
 				</Button>
 			</PageHeader>
 
-			{loading && <p>Loading...</p>}
-			{!!error && <p>Error...</p>}
-			{data && data.length > 0 && <CountryDetail country={data[0]} />}
+			{loading ? (
+				<p>Loading...</p>
+			) : (
+				<>{error ? <p>Error...</p> : data && data.length > 0 && <CountryDetail country={data[0]} />}</>
+			)}
 		</div>
 	);
 };
