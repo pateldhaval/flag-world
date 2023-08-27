@@ -1,6 +1,6 @@
 import './Dashboard.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { Search } from 'react-feather';
 
 import { CountryCard } from '@/app/components/CountryCard';
@@ -16,23 +16,30 @@ export const Dashboard = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 
+	const [isPending, startTransition] = useTransition();
 	const [countriesList, setCountriesList] = useState(countries);
 	const [search, setSearch] = useState('');
 
 	// [Extract unique regions from countries list]
 	const regions = [...new Set(countries?.map((item) => item.region))];
 
-	// [Updated countries list with search]
+	// [Search]
 	useEffect(() => {
-		const found = countries?.filter((item) => item.name.common.toLowerCase().includes(search.toLowerCase()));
-		setCountriesList(found || []);
+		// [This will separate out the re-rendering from react default batch process]
+		// [It will prevent blocking of UI from frequent state changes like search and improves UX]
+		startTransition(() => {
+			const found = countries?.filter((item) => item.name.common.toLowerCase().includes(search.toLowerCase()));
+			setCountriesList(found || []);
+		});
 	}, [countries, search]);
 
+	// [Filter by region]
 	const handleFilterSelect = (selected: string) => {
 		const filtered = countries?.filter((item) => item.region === selected);
 		setCountriesList(filtered || []);
 	};
 
+	// [Clear filter]
 	const handleFilterClear = () => {
 		setCountriesList(countries);
 	};
@@ -54,7 +61,7 @@ export const Dashboard = () => {
 			</PageHeader>
 
 			<div className='country-list'>
-				{loading ? (
+				{loading || isPending ? (
 					<Loading />
 				) : (
 					<>
