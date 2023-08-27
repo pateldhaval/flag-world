@@ -35,7 +35,7 @@ export const CountryInfo: React.FC<IProps> = ({ country }) => {
 						<BlockDetail title='Languages' value={Object.values(languages).join(', ')} />
 					</div>
 				</div>
-				<div className='flex gap-1 items-center'>
+				<div className='border-list'>
 					<Typography weight={600} className='shrink-0'>
 						Border Countries:
 					</Typography>

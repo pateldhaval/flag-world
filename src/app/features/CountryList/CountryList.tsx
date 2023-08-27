@@ -71,7 +71,11 @@ export const CountryList = () => {
 							</div>
 						) : (
 							countriesList?.map((country) => {
-								return <CountryCard key={country.name.official} country={country} />;
+								return (
+									<div key={country.name.official} className='country-item'>
+										<CountryCard country={country} />
+									</div>
+								);
 							})
 						)}
 					</>

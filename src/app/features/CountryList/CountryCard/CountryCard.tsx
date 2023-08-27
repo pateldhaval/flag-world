@@ -1,5 +1,3 @@
-import './CountryCard.css';
-
 import { useCountrySearch } from '@/app/hooks/useCountrySearch';
 import { ICountry } from '@/app/types/country.types';
 import { BlockDetail, Card } from '@/lib/ui';
@@ -14,12 +12,7 @@ export const CountryCard: React.FC<IProp> = ({ country }) => {
 	const { handleNavigateSearch } = useCountrySearch();
 
 	return (
-		<Card
-			image={flags.svg}
-			title={name.common}
-			className='country-item'
-			onClick={() => handleNavigateSearch(name.common)}
-		>
+		<Card image={flags.svg} title={name.common} onClick={() => handleNavigateSearch(name.common)}>
 			<BlockDetail title='Population' value={`${population}`} />
 			<BlockDetail title='Region' value={region} />
 			<BlockDetail title='Capital' value={capital[0]} />

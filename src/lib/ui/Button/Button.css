@@ -24,9 +24,17 @@
 	/* [sizes] */
 	&.size-md {
 		font-size: 1rem;
+
+		&.btn-elevated {
+			padding: 0.6rem 1rem;
+		}
 	}
 	&.size-sm {
 		font-size: 0.875rem;
+
+		&.btn-elevated {
+			padding: 0.4rem 0.75rem;
+		}
 	}
 
 	/* [weights] */

@@ -23,7 +23,7 @@ export const Button: React.FC<IProps> = ({
 	return (
 		<button className={classes.join(' ')} {...rest}>
 			{icon}
-			{children}
+			<span className='btn-text'>{children}</span>
 		</button>
 	);
 };

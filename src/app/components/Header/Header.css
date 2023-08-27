@@ -1,6 +1,19 @@
 .app-header {
 	padding: 1.4rem 0;
 	box-shadow: 0 0px 3px 1px var(--shadow);
+
+	.app-header-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.color-mode .btn-text {
+		@media (max-width: 579px) {
+			display: none;
+		}
+	}
 }
 
 [data-color-scheme='light'] {
