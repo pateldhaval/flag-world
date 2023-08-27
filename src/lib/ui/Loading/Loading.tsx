@@ -1,3 +1,5 @@
+import { Typography } from '@/lib/ui';
+
 export const Loading = () => {
-	return <div>Loading...</div>;
+	return <Typography>Loading...</Typography>;
 };

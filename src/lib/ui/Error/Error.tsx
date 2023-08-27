@@ -1,3 +1,5 @@
+import { Typography } from '@/lib/ui';
+
 export const Error = () => {
-	return <div>Error...</div>;
+	return <Typography>Error...</Typography>;
 };

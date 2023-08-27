@@ -4,8 +4,7 @@ import { useContext } from 'react';
 import { Moon } from 'react-feather';
 
 import { ThemeContext } from '@/lib/context/Theme.context';
-import { Button } from '@/lib/ui';
-import { Typography } from '@/lib/ui/Typography';
+import { Button, Typography } from '@/lib/ui';
 
 export const Header = () => {
 	const { handleColorScheme } = useContext(ThemeContext);

@@ -2,7 +2,7 @@ import './Card.css';
 
 import React from 'react';
 
-import { Typography } from '@/lib/ui/Typography';
+import { Typography } from '@/lib/ui';
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	image: string;

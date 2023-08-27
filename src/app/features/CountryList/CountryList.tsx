@@ -1,18 +1,16 @@
-import './Dashboard.css';
+import './CountryList.css';
 
 import { useEffect, useState, useTransition } from 'react';
 import { Search } from 'react-feather';
 
-import { CountryCard } from '@/app/components/CountryCard';
 import { PageHeader } from '@/app/components/PageHeader';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
-import { Error } from '@/lib/ui/Error';
-import { Input } from '@/lib/ui/Input';
-import { Loading } from '@/lib/ui/Loading';
-import { Select } from '@/lib/ui/Select';
+import { Error, Input, Loading, Select } from '@/lib/ui';
 
-export const Dashboard = () => {
+import { CountryCard } from './';
+
+export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 

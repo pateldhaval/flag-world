@@ -1,15 +1,14 @@
 import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { CountryDetail } from '@/app/components/CountryDetail';
 import { PageHeader } from '@/app/components/PageHeader';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
-import { Button } from '@/lib/ui';
-import { Error } from '@/lib/ui/Error';
-import { Loading } from '@/lib/ui/Loading';
+import { Button, Error, Loading } from '@/lib/ui';
 
-export const Country = () => {
+import { CountryInfo } from './';
+
+export const CountryDetail = () => {
 	const [params] = useSearchParams();
 	const navigate = useNavigate();
 
@@ -30,11 +29,7 @@ export const Country = () => {
 				</Button>
 			</PageHeader>
 
-			{loading ? (
-				<Loading />
-			) : (
-				<>{error ? <Error /> : data && data.length > 0 && <CountryDetail country={data[0]} />}</>
-			)}
+			{loading ? <Loading /> : <>{error ? <Error /> : data && data.length > 0 && <CountryInfo country={data[0]} />}</>}
 		</div>
 	);
 };

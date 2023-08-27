@@ -1,18 +1,17 @@
-import './CountryDetail.css';
+import './CountryInfo.css';
 
 import React from 'react';
 
 import { ICountry } from '@/app/types/country.types';
-import { Typography } from '@/lib/ui/Typography';
+import { BlockDetail, Typography } from '@/lib/ui';
 
-import { BlockDetail } from '../BlockDetail';
-import { Borders } from '../Borders';
+import { BorderList } from '../';
 
 interface IProps {
 	country: ICountry;
 }
 
-export const CountryDetail: React.FC<IProps> = ({ country }) => {
+export const CountryInfo: React.FC<IProps> = ({ country }) => {
 	const { flags, name, population, region, subregion, capital, tld, currencies, languages, borders } = country;
 
 	return (
@@ -40,7 +39,7 @@ export const CountryDetail: React.FC<IProps> = ({ country }) => {
 					<Typography weight={600} className='shrink-0'>
 						Border Countries:
 					</Typography>
-					{borders.length > 0 && <Borders borders={borders} />}
+					{borders.length > 0 && <BorderList borders={borders} />}
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography } from '@/lib/ui/Typography';
+import { Typography } from '@/lib/ui';
 
 interface IProps {
 	title: string;

@@ -2,9 +2,7 @@ import './CountryCard.css';
 
 import { useCountrySearch } from '@/app/hooks/useCountrySearch';
 import { ICountry } from '@/app/types/country.types';
-import { Card } from '@/lib/ui/Card';
-
-import { BlockDetail } from '../BlockDetail';
+import { BlockDetail, Card } from '@/lib/ui';
 
 interface IProp {
 	country: ICountry;
