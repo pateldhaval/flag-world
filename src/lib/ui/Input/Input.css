@@ -34,4 +34,10 @@
 			padding-left: 3.5rem;
 		}
 	}
+
+	&:hover {
+		input {
+			box-shadow: 0 0px 10px 3px var(--shadow);
+		}
+	}
 }

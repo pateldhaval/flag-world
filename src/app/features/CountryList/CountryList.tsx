@@ -60,11 +60,15 @@ export const CountryList = () => {
 
 			<div className='country-list'>
 				{loading || isPending ? (
-					<Loading />
+					<div className='flex justify-center col-span-full'>
+						<Loading size={32} />
+					</div>
 				) : (
 					<>
 						{error ? (
-							<Error />
+							<div className='col-span-full text-center'>
+								<Error message='Oops! Error in fetching country list, please try again.' />
+							</div>
 						) : (
 							countriesList?.map((country) => {
 								return <CountryCard key={country.name.official} country={country} />;

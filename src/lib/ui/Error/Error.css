@@ -1,0 +1,4 @@
+.error-root {
+	color: var(--error-text);
+	font-weight: 600;
+}

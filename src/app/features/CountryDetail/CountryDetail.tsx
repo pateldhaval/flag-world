@@ -29,7 +29,19 @@ export const CountryDetail = () => {
 				</Button>
 			</PageHeader>
 
-			{loading ? <Loading /> : <>{error ? <Error /> : data && data.length > 0 && <CountryInfo country={data[0]} />}</>}
+			{loading ? (
+				<div className='flex justify-center'>
+					<Loading size={32} />
+				</div>
+			) : (
+				<>
+					{error ? (
+						<Error message='Oops! Error in fetching country details, please try again.' className='text-center' />
+					) : (
+						data && data.length > 0 && <CountryInfo country={data[0]} />
+					)}
+				</>
+			)}
 		</div>
 	);
 };

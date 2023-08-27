@@ -13,7 +13,7 @@ export const Header = () => {
 		<header className='app-header'>
 			<div className='container flex justify-between items-center'>
 				<Typography component='h3'>Where in the world?</Typography>
-				<Button onClick={handleColorScheme} icon={<Moon size={17} />}>
+				<Button onClick={handleColorScheme} size='sm' weight='600' icon={<Moon size={17} />}>
 					Dark Mode
 				</Button>
 			</div>

@@ -6,6 +6,11 @@
 
 	--shadow: #27333f;
 	--card: #202c37;
+
+	--spinner-circle: rgba(255, 255, 255, 0.3);
+	--spinner-main: #ffffff;
+
+	--error-text: #ff8080;
 }
 
 [data-color-scheme='light'] {
@@ -16,4 +21,9 @@
 
 	--shadow: #e6e6e6;
 	--card: #ffffff;
+
+	--spinner-circle: rgba(0, 0, 0, 0.3);
+	--spinner-main: #000000;
+
+	--error-text: #e94444;
 }

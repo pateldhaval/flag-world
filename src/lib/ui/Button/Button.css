@@ -3,7 +3,6 @@
 	justify-content: center;
 	align-items: center;
 	gap: 0.5rem;
-	font-size: 1rem;
 	line-height: 1.25rem;
 	font-weight: 300;
 	cursor: pointer;
@@ -20,5 +19,24 @@
 		&:hover {
 			box-shadow: 0 0px 10px 3px var(--shadow);
 		}
+	}
+
+	/* [sizes] */
+	&.size-md {
+		font-size: 1rem;
+	}
+	&.size-sm {
+		font-size: 0.875rem;
+	}
+
+	/* [weights] */
+	&.weight-300 {
+		font-weight: 300;
+	}
+	&.weight-600 {
+		font-weight: 600;
+	}
+	&.weight-800 {
+		font-weight: 800;
 	}
 }

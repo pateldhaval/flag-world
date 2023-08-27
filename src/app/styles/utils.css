@@ -34,6 +34,14 @@
 	flex-shrink: 0;
 }
 
+.col-span-full {
+	grid-column: 1 / -1;
+}
+
+.text-center {
+	text-align: center;
+}
+
 .page {
 	padding-top: 40px;
 	padding-bottom: 44px;

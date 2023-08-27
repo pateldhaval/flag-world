@@ -19,7 +19,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 			) : (
 				<>
 					{error ? (
-						<Error />
+						<Error message='Oops! Error in fetching border countries, please try again.' />
 					) : (
 						<div className='flex flex-wrap gap-1'>
 							{bordersList &&
@@ -27,6 +27,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 									<Button
 										key={item.name.common}
 										isElevated={true}
+										size='sm'
 										onClick={() => handleNavigateSearch(item.name.common)}
 									>
 										{item.name.common}
