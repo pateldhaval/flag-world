@@ -12,7 +12,9 @@ export const Header = () => {
 	return (
 		<header className='app-header'>
 			<div className='app-header-content container'>
-				<Typography component='h3'>Where in the world?</Typography>
+				<Typography component='h1' className='logo'>
+					Where in the world?
+				</Typography>
 				<Button className='color-mode' onClick={handleColorScheme} size='sm' weight='600' icon={<Moon size={17} />}>
 					<span>Dark Mode</span>
 				</Button>
