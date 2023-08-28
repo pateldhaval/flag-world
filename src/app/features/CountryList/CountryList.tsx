@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from 'react';
 import { Search } from 'react-feather';
 
 import { PageHeader } from '@/app/components/PageHeader';
+import { Container } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
 import { Error, Input, Loading, Select } from '@/lib/ui';
@@ -43,7 +44,7 @@ export const CountryList = () => {
 	};
 
 	return (
-		<div className='container'>
+		<Container>
 			<PageHeader>
 				<div style={{ maxWidth: '18rem' }}>
 					<Input
@@ -81,6 +82,6 @@ export const CountryList = () => {
 					</>
 				)}
 			</div>
-		</div>
+		</Container>
 	);
 };

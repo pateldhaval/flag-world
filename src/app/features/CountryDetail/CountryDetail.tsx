@@ -2,6 +2,7 @@ import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { PageHeader } from '@/app/components/PageHeader';
+import { Container } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
 import { Button, Error, Loading } from '@/lib/ui';
@@ -22,7 +23,7 @@ export const CountryDetail = () => {
 	};
 
 	return (
-		<div className='container'>
+		<Container>
 			<PageHeader>
 				<Button icon={<ArrowLeft size={17} />} isElevated={true} onClick={handleBack}>
 					Back
@@ -42,6 +43,6 @@ export const CountryDetail = () => {
 					)}
 				</>
 			)}
-		</div>
+		</Container>
 	);
 };
