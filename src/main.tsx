@@ -1,4 +1,4 @@
-import '@/app/styles/index.css';
+import '@/lib/styles/index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
