@@ -1,15 +1,13 @@
-import './CountryList.css';
-
 import { useEffect, useState, useTransition } from 'react';
 import { Search } from 'react-feather';
 
-import { PageHeader } from '@/app/components/PageHeader';
-import { Container } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
+import { Container, PageHeader } from '@/app/styled';
 import { ICountry } from '@/app/types/country.types';
 import { Error, Input, Loading, Select } from '@/lib/ui';
 
 import { CountryCard } from './';
+import { CountryGrid, CountryItem } from './CountryList.styled';
 
 export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
@@ -59,7 +57,7 @@ export const CountryList = () => {
 				</div>
 			</PageHeader>
 
-			<div className='country-list'>
+			<CountryGrid>
 				{loading || isPending ? (
 					<div className='flex justify-center col-span-full'>
 						<Loading size={32} />
@@ -73,15 +71,15 @@ export const CountryList = () => {
 						) : (
 							countriesList?.map((country) => {
 								return (
-									<div key={country.name.official} className='country-item'>
+									<CountryItem key={country.name.official}>
 										<CountryCard country={country} />
-									</div>
+									</CountryItem>
 								);
 							})
 						)}
 					</>
 				)}
-			</div>
+			</CountryGrid>
 		</Container>
 	);
 };

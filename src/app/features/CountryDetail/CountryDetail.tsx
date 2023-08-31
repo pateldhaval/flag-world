@@ -1,9 +1,8 @@
 import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { PageHeader } from '@/app/components/PageHeader';
-import { Container } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
+import { Container, PageHeader } from '@/app/styled';
 import { ICountry } from '@/app/types/country.types';
 import { Button, Error, Loading } from '@/lib/ui';
 
