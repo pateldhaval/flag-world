@@ -1,10 +1,11 @@
 import { useEffect, useState, useTransition } from 'react';
 import { Search } from 'react-feather';
 
+import { Container, PageHeader } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
-import { Container, PageHeader } from '@/app/styled';
 import { ICountry } from '@/app/types/country.types';
 import { Error, Input, Loading, Select } from '@/lib/ui';
+import { Stack } from '@/lib/ui/layers/Stack';
 
 import { CountryCard } from './';
 import { CountryGrid, CountryItem } from './CountryList.styled';
@@ -44,42 +45,42 @@ export const CountryList = () => {
 	return (
 		<Container>
 			<PageHeader>
-				<div style={{ maxWidth: '18rem' }}>
+				<Stack style={{ maxWidth: '18rem' }}>
 					<Input
 						placeholder='Search for a country...'
 						icon={<Search size={18} />}
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 					/>
-				</div>
-				<div style={{ width: '13rem', maxWidth: '24rem' }}>
+				</Stack>
+				<Stack style={{ width: '13rem', maxWidth: '24rem' }}>
 					<Select label='Filter by Region' list={regions} onSelect={handleFilterSelect} onClear={handleFilterClear} />
-				</div>
+				</Stack>
 			</PageHeader>
 
-			<CountryGrid>
-				{loading || isPending ? (
-					<div className='flex justify-center col-span-full'>
-						<Loading size={32} />
-					</div>
-				) : (
-					<>
-						{error ? (
-							<div className='col-span-full text-center'>
-								<Error message='Oops! Error in fetching country list, please try again.' />
-							</div>
-						) : (
-							countriesList?.map((country) => {
+			{loading || isPending ? (
+				<Stack justifyContent='center' alignItems='center'>
+					<Loading size={32} />
+				</Stack>
+			) : (
+				<>
+					{error ? (
+						<Stack direction='row' justifyContent='center'>
+							<Error message='Oops! Error in fetching country list, please try again.' />
+						</Stack>
+					) : (
+						<CountryGrid>
+							{countriesList?.map((country) => {
 								return (
 									<CountryItem key={country.name.official}>
 										<CountryCard country={country} />
 									</CountryItem>
 								);
-							})
-						)}
-					</>
-				)}
-			</CountryGrid>
+							})}
+						</CountryGrid>
+					)}
+				</>
+			)}
 		</Container>
 	);
 };

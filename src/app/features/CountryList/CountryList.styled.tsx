@@ -14,18 +14,12 @@ export const CountryItem = styled.div`
 	cursor: pointer;
 	grid-column: span 3 / span 3;
 
-	.card-body {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
 	&:active {
 		transform: scale(0.9);
 	}
 
 	&:hover {
-		box-shadow: 0 3px 5px 1px var(--shadow);
+		box-shadow: 0 3px 5px 1px ${({ theme }) => theme.color.shadow};
 	}
 
 	@media (max-width: 1279px) {
