@@ -1,17 +1,5 @@
-import './Error.css';
+import { ErrorStyled, IError } from './Error.styled';
 
-import { Typography } from '@/lib/ui';
-
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-	message: React.ReactNode;
-}
-
-export const Error: React.FC<IProps> = ({ message, className, ...rest }) => {
-	const classes = ['error-root', `${className}`];
-
-	return (
-		<Typography className={classes.join(' ')} {...rest}>
-			{message}
-		</Typography>
-	);
+export const Error: React.FC<IError> = ({ message, ...rest }) => {
+	return <ErrorStyled {...rest}>{message}</ErrorStyled>;
 };

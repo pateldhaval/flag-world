@@ -1,16 +1,14 @@
-import './Input.css';
+import { FormControl, IInput, InputIcon, InputStyled } from './Input.styled';
 
-interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	icon?: React.ReactNode;
-}
-
-export const Input: React.FC<IProps> = ({ icon = null, className = '', ...rest }) => {
-	const classes = ['control-root', `${icon ? 'with-icon' : ''}`, `${className}`];
-
+export const Input: React.FC<IInput> = ({ icon, ...rest }) => {
 	return (
-		<div className={classes.join(' ')}>
-			<span className='icon'>{icon}</span>
-			<input {...rest} />
-		</div>
+		<FormControl>
+			<InputIcon>{icon}</InputIcon>
+			<InputStyled icon={icon} {...rest} />
+		</FormControl>
 	);
+};
+
+Input.defaultProps = {
+	icon: null
 };
