@@ -2,7 +2,7 @@ import { FlexAlignItems, FlexDirection, FlexJustifyContent, FlexWrap } from '@/l
 import { spacing } from '@/lib/utils/tokens.utils';
 import styled from '@emotion/styled';
 
-interface IProps {
+interface IStack {
 	direction?: FlexDirection;
 	justifyContent?: FlexJustifyContent;
 	alignItems?: FlexAlignItems;
@@ -10,7 +10,7 @@ interface IProps {
 	gap?: number;
 }
 
-export const Stack = styled.div<IProps>`
+export const Stack = styled.div<IStack>`
 	display: flex;
 	flex-direction: ${(props) => props.direction ?? 'column'};
 	justify-content: ${(props) => props.justifyContent ?? 'flex-start'};
