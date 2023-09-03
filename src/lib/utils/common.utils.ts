@@ -8,7 +8,7 @@ export const getLocalStorage = (key: string) => localStorage.getItem(key);
 
 export const setColorScheme = (scheme: string) => {
 	setLocalStorage(KEY_COLOR_SCHEME, scheme);
-	document.documentElement.dataset.colorScheme = scheme;
+	// document.documentElement.dataset.colorScheme = scheme;
 	document.documentElement.style.colorScheme = scheme;
 };
 

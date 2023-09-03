@@ -1,4 +1,6 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+
+import { getColorScheme, setColorScheme } from '@/lib/utils/common.utils';
 
 interface IProps {
 	children: React.ReactNode;
@@ -12,8 +14,15 @@ export const GlobalContext = createContext({
 export const GlobalProvider: React.FC<IProps> = ({ children }) => {
 	const [theme, setTheme] = useState('dark');
 
+	useEffect(() => {
+		const savedTheme = getColorScheme() || 'dark';
+		setTheme(savedTheme);
+	}, []);
+
 	const handleTheme = () => {
-		setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
+		const appliedTheme = theme === 'dark' ? 'light' : 'dark';
+		setTheme(appliedTheme);
+		setColorScheme(appliedTheme);
 	};
 
 	const values = {
