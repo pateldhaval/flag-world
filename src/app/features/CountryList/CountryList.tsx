@@ -4,11 +4,9 @@ import { Search } from 'react-feather';
 import { Container, PageHeader } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
-import { Error, Input, Loading, Select } from '@/lib/ui';
-import { Stack } from '@/lib/ui/layers/Stack';
+import { Error, Gallery, Input, Loading, Select, Stack } from '@/lib/ui';
 
 import { CountryCard } from './';
-import { CountryGrid, CountryItem } from './CountryList.styled';
 
 export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
@@ -69,15 +67,13 @@ export const CountryList = () => {
 							<Error message='Oops! Error in fetching country list, please try again.' />
 						</Stack>
 					) : (
-						<CountryGrid>
-							{countriesList?.map((country) => {
-								return (
-									<CountryItem key={country.name.official}>
-										<CountryCard country={country} />
-									</CountryItem>
-								);
-							})}
-						</CountryGrid>
+						<>
+							<Gallery gap={8} colMinWidth='240px'>
+								{countriesList?.map((country) => {
+									return <CountryCard key={country.name.official} country={country} />;
+								})}
+							</Gallery>
+						</>
 					)}
 				</>
 			)}

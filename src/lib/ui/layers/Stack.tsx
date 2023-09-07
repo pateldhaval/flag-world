@@ -12,9 +12,9 @@ interface IStack {
 
 export const Stack = styled.div<IStack>`
 	display: flex;
-	flex-direction: ${(props) => props.direction ?? 'column'};
-	justify-content: ${(props) => props.justifyContent ?? 'flex-start'};
-	align-items: ${(props) => props.alignItems ?? 'stretch'};
-	flex-wrap: ${(props) => props.wrap ?? 'nowrap'};
-	gap: ${(props) => spacing[props.gap ?? 0]};
+	flex-direction: ${({ direction = 'column' }) => direction};
+	justify-content: ${({ justifyContent = 'flex-start' }) => justifyContent};
+	align-items: ${({ alignItems = 'stretch' }) => alignItems};
+	flex-wrap: ${({ wrap = 'nowrap' }) => wrap};
+	gap: ${({ gap = 0 }) => spacing[gap]};
 `;
