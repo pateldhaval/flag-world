@@ -31,7 +31,7 @@ export const CountryDetail = () => {
 			</PageHeader>
 
 			{loading ? (
-				<Stack justifyContent='center'>
+				<Stack justifyContent='center' alignItems='center'>
 					<Loading size={32} />
 				</Stack>
 			) : (

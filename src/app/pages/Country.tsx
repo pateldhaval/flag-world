@@ -1,5 +1,7 @@
 import { CountryDetail } from '@/app/features/CountryDetail';
 
-export const Country = () => {
+const Country = () => {
 	return <CountryDetail />;
 };
+
+export default Country;
