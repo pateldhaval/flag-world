@@ -1,62 +1,58 @@
-import { useEffect, useState, useTransition } from 'react';
-import { Search } from 'react-feather';
+import React, { useCallback, useMemo, useState, useTransition } from 'react';
 
+import FilterBox from '@/app/components/FilterBox';
+import SearchBox from '@/app/components/SearchBox';
 import { Container, PageHeader } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
-import { Error, Gallery, Input, Loading, Select, Stack } from '@/lib/ui';
+import { Error, Gallery, Loading, Stack } from '@/lib/ui';
 
 import { CountryCard } from './';
+
+const SearchBoxMemo = React.memo(SearchBox);
+const FilterBoxMemo = React.memo(FilterBox);
 
 export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
 
-	const [isPending, startTransition] = useTransition();
+	const [isSearching, startTransition] = useTransition();
+
 	const [countriesList, setCountriesList] = useState(countries);
-	const [search, setSearch] = useState('');
 
-	// [Extract unique regions from countries list]
-	const regions = [...new Set(countries?.map((item) => item.region))];
+	// [Extract & Memoize unique regions from countries list]
+	const regions = useMemo(() => [...new Set(countries?.map((item) => item.region))], [countries]);
 
-	// [Search]
-	useEffect(() => {
+	// [Set search results got from the component]
+	const handleSearch = useCallback((result: ICountry[]) => {
 		// [This will separate out the re-rendering from react default batch process]
-		// [It will prevent blocking of UI from frequent state changes like search and improves UX]
-		startTransition(() => {
-			const found = countries?.filter((item) => item.name.common.toLowerCase().includes(search.toLowerCase()));
-			setCountriesList(found || []);
-		});
-	}, [countries, search]);
+		// [It will prevent blocking of UI from frequent state changes like type to search, so improves UX]
+		startTransition(() => setCountriesList(result));
+	}, []);
 
 	// [Filter by region]
-	const handleFilterSelect = (selected: string) => {
-		const filtered = countries?.filter((item) => item.region === selected);
-		setCountriesList(filtered || []);
-	};
+	const handleFilterSelect = useCallback((filtered: ICountry[]) => setCountriesList(filtered), []);
 
 	// [Clear filter]
-	const handleFilterClear = () => {
-		setCountriesList(countries);
-	};
+	const handleFilterClear = useCallback(() => setCountriesList(countries), [countries]);
 
 	return (
 		<Container>
 			<PageHeader>
 				<Stack style={{ maxWidth: '18rem' }}>
-					<Input
-						placeholder='Search for a country...'
-						icon={<Search size={18} />}
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					/>
+					<SearchBoxMemo list={countries} onSearch={handleSearch} />
 				</Stack>
 				<Stack style={{ width: '13rem', maxWidth: '24rem' }}>
-					<Select label='Filter by Region' list={regions} onSelect={handleFilterSelect} onClear={handleFilterClear} />
+					<FilterBoxMemo
+						data={countries}
+						filterList={regions}
+						onFilter={handleFilterSelect}
+						onClear={handleFilterClear}
+					/>
 				</Stack>
 			</PageHeader>
 
-			{loading || isPending ? (
+			{loading || isSearching ? (
 				<Stack justifyContent='center' alignItems='center'>
 					<Loading size={32} />
 				</Stack>
