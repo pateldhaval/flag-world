@@ -1,24 +1,25 @@
-import './Header.css';
-
 import { useContext } from 'react';
 import { Moon } from 'react-feather';
 
-import { ThemeContext } from '@/lib/context/Theme.context';
-import { Button, Typography } from '@/lib/ui';
+import { Container } from '@/app/components/styled';
+import { GlobalContext } from '@/lib/context/Global.context';
+import { Stack } from '@/lib/ui/layers/Stack';
+
+import { ButtonColorMode, HeaderWrapper, Logo } from './Header.styled';
 
 export const Header = () => {
-	const { handleColorScheme } = useContext(ThemeContext);
+	const { handleTheme } = useContext(GlobalContext);
 
 	return (
-		<header className='app-header'>
-			<div className='app-header-content container'>
-				<Typography component='h1' className='logo'>
-					Where in the world?
-				</Typography>
-				<Button className='color-mode' onClick={handleColorScheme} size='sm' weight='600' icon={<Moon size={17} />}>
-					<span>Dark Mode</span>
-				</Button>
-			</div>
-		</header>
+		<HeaderWrapper>
+			<Container>
+				<Stack direction='row' justifyContent='space-between' alignItems='center' gap={4}>
+					<Logo component='h1'>Where in the world?</Logo>
+					<ButtonColorMode onClick={handleTheme} size='sm' weight={600} icon={<Moon size={17} />}>
+						<span>Dark Mode</span>
+					</ButtonColorMode>
+				</Stack>
+			</Container>
+		</HeaderWrapper>
 	);
 };

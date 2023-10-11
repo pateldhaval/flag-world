@@ -1,32 +1,23 @@
-import './Card.css';
-
 import React from 'react';
 
-import { Typography } from '@/lib/ui';
+import { CardBody, CardContent, CardImage, CardTitle, CardWrapper, ICard } from './Card.styled';
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-	title: string;
-	image: string;
-	imageRatio?: string;
-	children: React.ReactNode;
-}
-
-export const Card: React.FC<IProps> = ({ title, image, imageRatio = 16 / 9, children, className = '', ...rest }) => {
-	const classes = ['card-root', `${className}`];
-
+export const Card: React.FC<ICard> = ({ image, title, imageRatio, children, ...rest }) => {
 	return (
-		<div className={classes.join(' ')} {...rest}>
+		<CardWrapper {...rest}>
 			{image && (
-				<figure>
+				<CardImage>
 					<img src={image} alt={title} style={{ aspectRatio: imageRatio }} loading='lazy' />
-				</figure>
+				</CardImage>
 			)}
-			<div className='card-content'>
-				<Typography component='h3' className='card-title'>
-					{title}
-				</Typography>
-				<div className='card-body'>{children}</div>
-			</div>
-		</div>
+			<CardContent>
+				<CardTitle component='h3'>{title}</CardTitle>
+				<CardBody>{children}</CardBody>
+			</CardContent>
+		</CardWrapper>
 	);
+};
+
+Card.defaultProps = {
+	imageRatio: 16 / 9
 };

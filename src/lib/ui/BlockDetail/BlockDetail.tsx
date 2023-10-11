@@ -1,8 +1,8 @@
-import './BlockDetail.css';
-
 import React from 'react';
 
 import { Typography } from '@/lib/ui';
+
+import { Stack } from '../layers/Stack';
 
 interface IProps {
 	title: string;
@@ -11,11 +11,11 @@ interface IProps {
 
 export const BlockDetail: React.FC<IProps> = ({ title, value }) => {
 	return (
-		<Typography className='block-detail-root'>
+		<Stack direction='row' gap={1}>
 			<Typography component='span' weight={600}>
 				{title}:
 			</Typography>
-			<span> {value}</span>
-		</Typography>
+			<Typography>{value}</Typography>
+		</Stack>
 	);
 };

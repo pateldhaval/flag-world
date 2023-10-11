@@ -1,9 +1,17 @@
+import { lazy, Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 
 import { Layout } from '@/app/layout';
-import { Country } from '@/app/pages/Country';
-import { Dashboard } from '@/app/pages/Dashboard';
-import { NotFound } from '@/app/pages/NotFound';
+
+import { LazyLoader } from '../components/LazyLoader';
+
+// import Country from '@/app/pages/Country';
+// import Dashboard from '@/app/pages/Dashboard';
+// import NotFound from '@/app/pages/NotFound';
+
+const Dashboard = lazy(() => import('@/app/pages/Dashboard'));
+const Country = lazy(() => import('@/app/pages/Country'));
+const NotFound = lazy(() => import('@/app/pages/NotFound'));
 
 export const Router = () => {
 	return useRoutes([
@@ -13,15 +21,27 @@ export const Router = () => {
 			children: [
 				{
 					index: true,
-					element: <Dashboard />
+					element: (
+						<Suspense fallback={<LazyLoader />}>
+							<Dashboard />
+						</Suspense>
+					)
 				},
 				{
 					path: '/country-detail',
-					element: <Country />
+					element: (
+						<Suspense fallback={<LazyLoader />}>
+							<Country />
+						</Suspense>
+					)
 				},
 				{
 					path: '/404',
-					element: <NotFound />
+					element: (
+						<Suspense fallback={<LazyLoader />}>
+							<NotFound />
+						</Suspense>
+					)
 				}
 			]
 		},

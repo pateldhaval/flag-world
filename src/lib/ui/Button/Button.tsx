@@ -1,29 +1,20 @@
-import './Button.css';
-
 import React from 'react';
 
-interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	isElevated?: boolean;
-	size?: 'md' | 'sm';
-	weight?: '300' | '600' | '800';
-	icon?: React.ReactNode;
-}
+import { ButtonStyled, IButton } from './Button.styled';
 
-export const Button: React.FC<IProps> = ({
-	children,
-	className = '',
-	isElevated = false,
-	size = 'md',
-	weight = '300',
-	icon,
-	...rest
-}) => {
-	const classes = ['btn-root', `${isElevated && 'btn-elevated'}`, `size-${size}`, `weight-${weight}`, `${className}`];
-
+export const Button: React.FC<IButton> = ({ children, icon, ...rest }) => {
 	return (
-		<button className={classes.join(' ')} {...rest}>
-			{icon}
-			<span className='btn-text'>{children}</span>
-		</button>
+		<span>
+			<ButtonStyled {...rest}>
+				{icon}
+				<span>{children}</span>
+			</ButtonStyled>
+		</span>
 	);
+};
+
+Button.defaultProps = {
+	isElevated: false,
+	size: 'md',
+	weight: 300
 };

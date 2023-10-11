@@ -1,7 +1,8 @@
-import './Select.css';
-
 import React, { useState } from 'react';
 import { ChevronDown, X } from 'react-feather';
+
+import { Typography } from '../';
+import { OptionsItem, OptionsList, SelectAction, SelectClear, SelectTrigger, SelectWrapper } from './Select.styled';
 
 interface IProps {
 	label: string;
@@ -25,25 +26,23 @@ export const Select: React.FC<IProps> = ({ label, list, onSelect, onClear }) => 
 	};
 
 	return (
-		<div className='select-root'>
-			<button className='trigger'>
-				<span>{selected}</span>
-				<span className='action'>
-					<span className='clear' onClick={handleClear}>
+		<SelectWrapper>
+			<SelectTrigger>
+				<Typography component='span'>{selected}</Typography>
+				<SelectAction>
+					<SelectClear onClick={handleClear}>
 						<X size={17} />
-					</span>
+					</SelectClear>
 					<ChevronDown size={17} />
-				</span>
-			</button>
-			<ul>
+				</SelectAction>
+			</SelectTrigger>
+			<OptionsList>
 				{list.map((item) => (
-					<li key={item}>
-						<button className='option' onClick={(e) => handleSelect(e)}>
-							{item}
-						</button>
-					</li>
+					<OptionsItem key={item} onClick={(e) => handleSelect(e)}>
+						{item}
+					</OptionsItem>
 				))}
-			</ul>
-		</div>
+			</OptionsList>
+		</SelectWrapper>
 	);
 };

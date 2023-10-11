@@ -1,9 +1,9 @@
-import './Loading.css';
+import { ISpinner, LoadingSpinner } from './Loading.styled';
 
-interface IProps {
-	size?: number;
-}
+export const Loading: React.FC<ISpinner> = ({ ...rest }) => {
+	return <LoadingSpinner {...rest}></LoadingSpinner>;
+};
 
-export const Loading: React.FC<IProps> = ({ size = 20 }) => {
-	return <span className='spinner' style={{ width: size, height: size }}></span>;
+Loading.defaultProps = {
+	size: 20
 };

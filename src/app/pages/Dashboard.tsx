@@ -1,5 +1,7 @@
 import { CountryList } from '@/app/features/CountryList';
 
-export const Dashboard = () => {
+const Dashboard = () => {
 	return <CountryList />;
 };
+
+export default Dashboard;

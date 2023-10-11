@@ -2,6 +2,7 @@ import { useCountrySearch } from '@/app/hooks/useCountrySearch';
 import { useQuery } from '@/app/hooks/useQuery';
 import { IBorderCountry } from '@/app/types/country.types';
 import { Button, Error, Loading } from '@/lib/ui';
+import { Stack } from '@/lib/ui/layers/Stack';
 
 interface IProps {
 	borders: string[];
@@ -21,7 +22,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 					{error ? (
 						<Error message='Oops! Error in fetching border countries, please try again.' />
 					) : (
-						<div className='flex flex-wrap gap-1'>
+						<Stack direction='row' wrap='wrap' gap={4}>
 							{bordersList &&
 								bordersList.map((item) => (
 									<Button
@@ -33,7 +34,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 										{item.name.common}
 									</Button>
 								))}
-						</div>
+						</Stack>
 					)}
 				</>
 			)}

@@ -1,10 +1,11 @@
 import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { PageHeader } from '@/app/components/PageHeader';
+import { Container, PageHeader } from '@/app/components/styled';
 import { useQuery } from '@/app/hooks/useQuery';
 import { ICountry } from '@/app/types/country.types';
 import { Button, Error, Loading } from '@/lib/ui';
+import { Stack } from '@/lib/ui/layers/Stack';
 
 import { CountryInfo } from './';
 
@@ -22,7 +23,7 @@ export const CountryDetail = () => {
 	};
 
 	return (
-		<div className='container'>
+		<Container>
 			<PageHeader>
 				<Button icon={<ArrowLeft size={17} />} isElevated={true} onClick={handleBack}>
 					Back
@@ -30,18 +31,20 @@ export const CountryDetail = () => {
 			</PageHeader>
 
 			{loading ? (
-				<div className='flex justify-center'>
+				<Stack justifyContent='center' alignItems='center'>
 					<Loading size={32} />
-				</div>
+				</Stack>
 			) : (
 				<>
 					{error ? (
-						<Error message='Oops! Error in fetching country details, please try again.' className='text-center' />
+						<Stack direction='row' justifyContent='center'>
+							<Error message='Oops! Error in fetching country details, please try again.' />
+						</Stack>
 					) : (
 						data && data.length > 0 && <CountryInfo country={data[0]} />
 					)}
 				</>
 			)}
-		</div>
+		</Container>
 	);
 };
