@@ -13,14 +13,28 @@ export const CountryDetail = () => {
 	const [params] = useSearchParams();
 	const navigate = useNavigate();
 
-	const country = params.get('country');
+	const countryName = params.get('country');
 
-	const url = `https://restcountries.com/v3.1/name/${country}?fields=name,tld,currencies,region,languages,subregion,capital,borders,flags,population`;
-	const { isLoading, data, error } = useGetRequest<ICountry[]>('country-detail', url);
+	const url = `https://restcountries.com/v3.1/name/${countryName}?fields=name,tld,currencies,region,languages,subregion,capital,borders,flags,population`;
+	const { isLoading, data: country, error } = useGetRequest<ICountry[]>('country-detail', url);
 
 	const handleBack = () => {
 		navigate('/');
 	};
+
+	if (isLoading)
+		return (
+			<Stack justifyContent='center' alignItems='center'>
+				<Loading size={32} />
+			</Stack>
+		);
+
+	if (error)
+		return (
+			<Stack direction='row' justifyContent='center'>
+				<Error message='Oops! Error in fetching country details, please try again.' />
+			</Stack>
+		);
 
 	return (
 		<Container>
@@ -30,21 +44,7 @@ export const CountryDetail = () => {
 				</Button>
 			</PageHeader>
 
-			{isLoading ? (
-				<Stack justifyContent='center' alignItems='center'>
-					<Loading size={32} />
-				</Stack>
-			) : (
-				<>
-					{error ? (
-						<Stack direction='row' justifyContent='center'>
-							<Error message='Oops! Error in fetching country details, please try again.' />
-						</Stack>
-					) : (
-						data && data.length > 0 && <CountryInfo country={data[0]} />
-					)}
-				</>
-			)}
+			{country && country.length > 0 && <CountryInfo country={country[0]} />}
 		</Container>
 	);
 };

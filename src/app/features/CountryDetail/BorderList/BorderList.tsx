@@ -13,31 +13,23 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 	const { isLoading, data: bordersList, error } = useGetRequest<IBorderCountry[]>('border-list', url);
 	const { handleNavigateSearch } = useCountrySearch();
 
+	if (isLoading) return <Loading />;
+
+	if (error) return <Error message='Oops! Error in fetching border countries, please try again.' />;
+
 	return (
-		<>
-			{isLoading ? (
-				<Loading />
-			) : (
-				<>
-					{error ? (
-						<Error message='Oops! Error in fetching border countries, please try again.' />
-					) : (
-						<Stack direction='row' wrap='wrap' gap={4}>
-							{bordersList &&
-								bordersList.map((item) => (
-									<Button
-										key={item.name.common}
-										isElevated={true}
-										size='sm'
-										onClick={() => handleNavigateSearch(item.name.common)}
-									>
-										{item.name.common}
-									</Button>
-								))}
-						</Stack>
-					)}
-				</>
-			)}
-		</>
+		<Stack direction='row' wrap='wrap' gap={4}>
+			{bordersList &&
+				bordersList.map((item) => (
+					<Button
+						key={item.name.common}
+						isElevated={true}
+						size='sm'
+						onClick={() => handleNavigateSearch(item.name.common)}
+					>
+						{item.name.common}
+					</Button>
+				))}
+		</Stack>
 	);
 };

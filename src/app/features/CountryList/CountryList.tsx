@@ -36,6 +36,21 @@ export const CountryList = () => {
 	// [Clear filter]
 	const handleFilterClear = useCallback(() => setCountriesList(countries), [countries]);
 
+	const loadingElement = (
+		<Stack justifyContent='center' alignItems='center'>
+			<Loading size={32} />
+		</Stack>
+	);
+
+	if (isLoading) return loadingElement;
+
+	if (error)
+		return (
+			<Stack direction='row' justifyContent='center'>
+				<Error message='Oops! Error in fetching country list, please try again.' />
+			</Stack>
+		);
+
 	return (
 		<Container>
 			<PageHeader>
@@ -52,26 +67,14 @@ export const CountryList = () => {
 				</Stack>
 			</PageHeader>
 
-			{isLoading || isSearching ? (
-				<Stack justifyContent='center' alignItems='center'>
-					<Loading size={32} />
-				</Stack>
+			{isSearching ? (
+				loadingElement
 			) : (
-				<>
-					{error ? (
-						<Stack direction='row' justifyContent='center'>
-							<Error message='Oops! Error in fetching country list, please try again.' />
-						</Stack>
-					) : (
-						<>
-							<Gallery gap={8} colMinWidth='240px'>
-								{countriesList?.map((country: ICountry) => {
-									return <CountryCard key={country.name.official} country={country} />;
-								})}
-							</Gallery>
-						</>
-					)}
-				</>
+				<Gallery gap={8} colMinWidth='240px'>
+					{countriesList?.map((country: ICountry) => {
+						return <CountryCard key={country.name.official} country={country} />;
+					})}
+				</Gallery>
 			)}
 		</Container>
 	);
