@@ -6,10 +6,10 @@ export interface INavigateSearch {
 	query: string;
 }
 
-export const useCountrySearch = () => {
+export const useCountryNavigate = () => {
 	const navigate = useNavigate();
 
-	const handleNavigateSearch = (query: string) => {
+	const handleCountryNavigate = (query: string) => {
 		navigate({
 			pathname: '/country-detail',
 			// search: `?country=${name.common}`
@@ -19,5 +19,5 @@ export const useCountrySearch = () => {
 		});
 	};
 
-	return { handleNavigateSearch };
+	return { handleCountryNavigate };
 };

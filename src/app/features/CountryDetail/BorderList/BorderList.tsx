@@ -1,4 +1,4 @@
-import { useCountrySearch } from '@/app/hooks/useCountrySearch';
+import { useCountryNavigate } from '@/app/hooks/useCountryNavigate';
 import { IBorderCountry } from '@/app/types/country.types';
 import { useGetRequest } from '@/lib/hooks/useGetRequest';
 import { Button, Error, Loading } from '@/lib/ui';
@@ -12,7 +12,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 	const bordersStr = borders.join(',');
 	const url = `https://restcountries.com/v3.1/alpha?codes=${bordersStr}&fields=name`;
 	const { isLoading, data: bordersList, error } = useGetRequest<IBorderCountry[]>(`border-${bordersStr}`, url);
-	const { handleNavigateSearch } = useCountrySearch();
+	const { handleCountryNavigate } = useCountryNavigate();
 
 	if (isLoading) return <Loading />;
 
@@ -26,7 +26,7 @@ export const BorderList: React.FC<IProps> = ({ borders }) => {
 						key={item.name.common}
 						isElevated={true}
 						size='sm'
-						onClick={() => handleNavigateSearch(item.name.common)}
+						onClick={() => handleCountryNavigate(item.name.common)}
 					>
 						{item.name.common}
 					</Button>
