@@ -2,8 +2,8 @@ import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Container, PageHeader } from '@/app/components/styled';
-import { useGetRequest } from '@/app/hooks/useGetRequest';
 import { ICountry } from '@/app/types/country.types';
+import { useGetRequest } from '@/lib/hooks/useGetRequest';
 import { Button, Error, Loading } from '@/lib/ui';
 import { Stack } from '@/lib/ui/layers/Stack';
 

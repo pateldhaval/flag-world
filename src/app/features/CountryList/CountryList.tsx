@@ -3,8 +3,8 @@ import React, { useCallback, useMemo, useState, useTransition } from 'react';
 import FilterBox from '@/app/components/FilterBox';
 import SearchBox from '@/app/components/SearchBox';
 import { Container, PageHeader } from '@/app/components/styled';
-import { useGetRequest } from '@/app/hooks/useGetRequest';
 import { ICountry } from '@/app/types/country.types';
+import { useGetRequest } from '@/lib/hooks/useGetRequest';
 import { Error, Gallery, Loading, Stack } from '@/lib/ui';
 
 import { CountryCard } from './';

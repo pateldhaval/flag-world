@@ -1,6 +1,6 @@
 import { useCountrySearch } from '@/app/hooks/useCountrySearch';
-import { useGetRequest } from '@/app/hooks/useGetRequest';
 import { IBorderCountry } from '@/app/types/country.types';
+import { useGetRequest } from '@/lib/hooks/useGetRequest';
 import { Button, Error, Loading } from '@/lib/ui';
 import { Stack } from '@/lib/ui/layers/Stack';
 
