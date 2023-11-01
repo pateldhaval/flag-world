@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState, useTransition } from 'react';
 import FilterBox from '@/app/components/FilterBox';
 import SearchBox from '@/app/components/SearchBox';
 import { Container, PageHeader } from '@/app/components/styled';
-import { useQuery } from '@/app/hooks/useQuery';
+import { useGetRequest } from '@/app/hooks/useGetRequest';
 import { ICountry } from '@/app/types/country.types';
 import { Error, Gallery, Loading, Stack } from '@/lib/ui';
 
@@ -14,14 +14,14 @@ const FilterBoxMemo = React.memo(FilterBox);
 
 export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
-	const { data: countries, error, loading } = useQuery<ICountry[]>(url);
+	const { data: countries, error, isLoading } = useGetRequest<ICountry[]>('country-list', url);
 
 	const [isSearching, startTransition] = useTransition();
 
 	const [countriesList, setCountriesList] = useState(countries);
 
 	// [Extract & Memoize unique regions from countries list]
-	const regions = useMemo(() => [...new Set(countries?.map((item) => item.region))], [countries]);
+	const regions = useMemo(() => [...new Set(countries?.map((item: ICountry) => item.region))], [countries]);
 
 	// [Set search results got from the component]
 	const handleSearch = useCallback((result: ICountry[]) => {
@@ -52,7 +52,7 @@ export const CountryList = () => {
 				</Stack>
 			</PageHeader>
 
-			{loading || isSearching ? (
+			{isLoading || isSearching ? (
 				<Stack justifyContent='center' alignItems='center'>
 					<Loading size={32} />
 				</Stack>
@@ -65,7 +65,7 @@ export const CountryList = () => {
 					) : (
 						<>
 							<Gallery gap={8} colMinWidth='240px'>
-								{countriesList?.map((country) => {
+								{countriesList?.map((country: ICountry) => {
 									return <CountryCard key={country.name.official} country={country} />;
 								})}
 							</Gallery>

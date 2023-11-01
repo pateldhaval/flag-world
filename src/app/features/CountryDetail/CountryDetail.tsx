@@ -2,7 +2,7 @@ import { ArrowLeft } from 'react-feather';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Container, PageHeader } from '@/app/components/styled';
-import { useQuery } from '@/app/hooks/useQuery';
+import { useGetRequest } from '@/app/hooks/useGetRequest';
 import { ICountry } from '@/app/types/country.types';
 import { Button, Error, Loading } from '@/lib/ui';
 import { Stack } from '@/lib/ui/layers/Stack';
@@ -16,7 +16,7 @@ export const CountryDetail = () => {
 	const country = params.get('country');
 
 	const url = `https://restcountries.com/v3.1/name/${country}?fields=name,tld,currencies,region,languages,subregion,capital,borders,flags,population`;
-	const { loading, data, error } = useQuery<ICountry[]>(url);
+	const { isLoading, data, error } = useGetRequest<ICountry[]>('country-detail', url);
 
 	const handleBack = () => {
 		navigate('/');
@@ -30,7 +30,7 @@ export const CountryDetail = () => {
 				</Button>
 			</PageHeader>
 
-			{loading ? (
+			{isLoading ? (
 				<Stack justifyContent='center' alignItems='center'>
 					<Loading size={32} />
 				</Stack>

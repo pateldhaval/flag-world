@@ -2,7 +2,7 @@ import { ICountry } from '@/app/types/country.types';
 import { Select } from '@/lib/ui';
 
 interface Props {
-	data: ICountry[] | null;
+	data: ICountry[] | undefined;
 	filterList: string[];
 	onFilter: (result: ICountry[]) => void;
 	onClear: () => void;

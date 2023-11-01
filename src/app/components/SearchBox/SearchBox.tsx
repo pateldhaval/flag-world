@@ -5,7 +5,7 @@ import { ICountry } from '@/app/types/country.types';
 import { Input } from '@/lib/ui';
 
 interface Props {
-	list: ICountry[] | null;
+	list: ICountry[] | undefined;
 	onSearch: (result: ICountry[]) => void;
 }
 
