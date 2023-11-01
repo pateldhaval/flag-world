@@ -16,7 +16,7 @@ export const CountryDetail = () => {
 	const countryName = params.get('country');
 
 	const url = `https://restcountries.com/v3.1/name/${countryName}?fields=name,tld,currencies,region,languages,subregion,capital,borders,flags,population`;
-	const { isLoading, data: country, error } = useGetRequest<ICountry[]>(`country-${countryName}`, url);
+	const { isLoading, data: countries, error } = useGetRequest<ICountry[]>(`country-${countryName}`, url);
 
 	const handleBack = () => {
 		navigate('/');
@@ -36,6 +36,9 @@ export const CountryDetail = () => {
 			</Stack>
 		);
 
+	// [Filter exact country if multiple countries found from the API]
+	const country = countries?.find((item) => item.name.common === countryName);
+
 	return (
 		<Container>
 			<PageHeader>
@@ -44,7 +47,7 @@ export const CountryDetail = () => {
 				</Button>
 			</PageHeader>
 
-			{country && country.length > 0 && <CountryInfo country={country[0]} />}
+			{country && <CountryInfo country={country} />}
 		</Container>
 	);
 };
