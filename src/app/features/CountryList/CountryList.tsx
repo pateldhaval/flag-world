@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useState, useTransition } from 'react';
+import React from 'react';
 
 import FilterBox from '@/app/components/FilterBox';
 import SearchBox from '@/app/components/SearchBox';
 import { Container, PageHeader } from '@/app/components/styled';
+import { useCountrySearchFilter } from '@/app/hooks/useCountrySearchFilter';
 import { ICountry } from '@/app/types/country.types';
 import { useGetRequest } from '@/lib/hooks/useGetRequest';
 import { Error, Gallery, Loading, Stack } from '@/lib/ui';
@@ -16,25 +17,8 @@ export const CountryList = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, isLoading } = useGetRequest<ICountry[]>('country-list', url);
 
-	const [isSearching, startTransition] = useTransition();
-
-	const [countriesList, setCountriesList] = useState(countries);
-
-	// [Extract & Memoize unique regions from countries list]
-	const regions = useMemo(() => [...new Set(countries?.map((item: ICountry) => item.region))], [countries]);
-
-	// [Set search results got from the component]
-	const handleSearch = useCallback((result: ICountry[]) => {
-		// [This will separate out the re-rendering from react default batch process]
-		// [It will prevent blocking of UI from frequent state changes like type to search, so improves UX]
-		startTransition(() => setCountriesList(result));
-	}, []);
-
-	// [Filter by region]
-	const handleFilterSelect = useCallback((filtered: ICountry[]) => setCountriesList(filtered), []);
-
-	// [Clear filter]
-	const handleFilterClear = useCallback(() => setCountriesList(countries), [countries]);
+	const { countriesList, regions, handleFilterSelect, handleFilterClear, handleSearch, isSearching } =
+		useCountrySearchFilter(countries || []);
 
 	const loadingElement = (
 		<Stack justifyContent='center' alignItems='center'>
