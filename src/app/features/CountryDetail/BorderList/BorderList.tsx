@@ -9,8 +9,9 @@ interface IProps {
 }
 
 export const BorderList: React.FC<IProps> = ({ borders }) => {
-	const url = `https://restcountries.com/v3.1/alpha?codes=${borders.join(',')}&fields=name`;
-	const { isLoading, data: bordersList, error } = useGetRequest<IBorderCountry[]>('border-list', url);
+	const bordersStr = borders.join(',');
+	const url = `https://restcountries.com/v3.1/alpha?codes=${bordersStr}&fields=name`;
+	const { isLoading, data: bordersList, error } = useGetRequest<IBorderCountry[]>(`border-${bordersStr}`, url);
 	const { handleNavigateSearch } = useCountrySearch();
 
 	if (isLoading) return <Loading />;

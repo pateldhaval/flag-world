@@ -16,7 +16,7 @@ export const CountryDetail = () => {
 	const countryName = params.get('country');
 
 	const url = `https://restcountries.com/v3.1/name/${countryName}?fields=name,tld,currencies,region,languages,subregion,capital,borders,flags,population`;
-	const { isLoading, data: country, error } = useGetRequest<ICountry[]>('country-detail', url);
+	const { isLoading, data: country, error } = useGetRequest<ICountry[]>(`country-${countryName}`, url);
 
 	const handleBack = () => {
 		navigate('/');
