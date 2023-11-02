@@ -21,6 +21,7 @@ export const ButtonStyled = styled.button<IButton>`
 	color: inherit;
 	padding: 0;
 	font-weight: ${(props) => weight[props.weight || 300]};
+	white-space: nowrap;
 
 	/* Colors */
 	background-color: ${(props) => props.theme.color.background};

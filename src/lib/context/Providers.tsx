@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { GlobalContext } from '@/lib/context/Global.context';
+import { useGlobalContext } from '@/lib/context/Global.context';
 import { GlobalStyles } from '@/lib/styles/GlobalStyles';
 import { themes } from '@/lib/styles/themes';
 import { ThemeProvider } from '@emotion/react';
@@ -14,10 +14,10 @@ interface ProviderProps {
 }
 
 export const Providers: React.FC<ProviderProps> = ({ children }) => {
-	const { theme } = useContext(GlobalContext);
+	const { colorScheme } = useGlobalContext();
 
 	return (
-		<ThemeProvider theme={theme === 'dark' ? themes.dark : themes.light}>
+		<ThemeProvider theme={colorScheme === 'dark' ? themes.dark : themes.light}>
 			<GlobalStyles />
 			<QueryClientProvider client={queryClient}>
 				<BrowserRouter>{children}</BrowserRouter>
