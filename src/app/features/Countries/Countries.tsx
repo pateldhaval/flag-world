@@ -6,27 +6,27 @@ import { Container, PageHeader } from '@/app/components/styled';
 import { useCountrySearchFilter } from '@/app/hooks/useCountrySearchFilter';
 import { ICountry } from '@/app/types/country.types';
 import { useGetRequest } from '@/lib/hooks/useGetRequest';
-import { Error, Gallery, Loading, Stack } from '@/lib/ui';
+import { Error, Loading, Stack } from '@/lib/ui';
 
-import { CountryCard } from './';
+import { CountryList } from './';
 
 const SearchBoxMemo = React.memo(SearchBox);
 const FilterBoxMemo = React.memo(FilterBox);
 
-export const CountryList = () => {
+export const Countries = () => {
 	const url = 'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital';
 	const { data: countries, error, isLoading } = useGetRequest<ICountry[]>('country-list', url);
 
 	const { countriesList, regions, handleFilterSelect, handleFilterClear, handleSearch, isSearching } =
 		useCountrySearchFilter(countries || []);
 
-	const loadingElement = (
+	const renderLoading = (
 		<Stack justifyContent='center' alignItems='center'>
 			<Loading size={32} />
 		</Stack>
 	);
 
-	if (isLoading) return loadingElement;
+	if (isLoading) return renderLoading;
 
 	if (error)
 		return (
@@ -51,15 +51,7 @@ export const CountryList = () => {
 				</Stack>
 			</PageHeader>
 
-			{isSearching ? (
-				loadingElement
-			) : (
-				<Gallery gap={8} colMinWidth='240px'>
-					{countriesList?.map((country: ICountry) => {
-						return <CountryCard key={country.name.official} country={country} />;
-					})}
-				</Gallery>
-			)}
+			{isSearching ? renderLoading : <CountryList countries={countriesList} />}
 		</Container>
 	);
 };

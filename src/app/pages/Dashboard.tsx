@@ -1,7 +1,7 @@
-import { CountryList } from '@/app/features/CountryList';
+import { Countries } from '@/app/features/Countries';
 
 const Dashboard = () => {
-	return <CountryList />;
+	return <Countries />;
 };
 
 export default Dashboard;
